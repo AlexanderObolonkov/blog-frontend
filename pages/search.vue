@@ -1,0 +1,38 @@
+<template>
+  <div>
+    <div class="container">
+      <div>
+        <div class="row">
+          <div class="col-lg-12">
+            <nav aria-label="breadcrumb" class="mt-4">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><nuxt-link to="/">Главная</nuxt-link></li>
+                <li class="breadcrumb-item active" aria-current="page">Поиск</li>
+              </ol>
+            </nav>
+            <p class="lead">Найдено записей: {{posts.count}}</p>
+            {{posts}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  layout: "post_detail",
+  watchQuery: ['q'],
+  async asyncData({route}) {
+    const { data } = await axios.get(`http://localhost:8000/api/posts/?q=${route.query.q}`);
+    return {
+      posts: data,
+    }
+  },
+}
+</script>
+
+<style scoped>
+
+</style>
