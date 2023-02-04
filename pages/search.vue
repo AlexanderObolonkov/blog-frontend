@@ -1,18 +1,17 @@
 <template>
   <div>
+    <SearchHeader @searchPosts="posts = $event"/>
     <div class="container">
-      <div>
-        <div class="row">
-          <div class="col-lg-12">
-            <nav aria-label="breadcrumb" class="mt-4">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><nuxt-link to="/">Главная</nuxt-link></li>
-                <li class="breadcrumb-item active" aria-current="page">Поиск</li>
-              </ol>
-            </nav>
-            <p class="lead">Найдено записей: {{posts.count}}</p>
-            {{posts}}
-          </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <nav aria-label="breadcrumb" class="mt-4">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><nuxt-link to="/">Главная</nuxt-link></li>
+              <li class="breadcrumb-item active" aria-current="page">Поиск</li>
+            </ol>
+          </nav>
+          <p class="lead">Найдено записей: {{posts.count}}</p>
+          {{posts}}
         </div>
       </div>
     </div>
@@ -20,12 +19,20 @@
 </template>
 
 <script>
+import SearchHeader from "@/components/SearchHeader";
 import axios from "axios";
 export default {
+  components: {SearchHeader},
   layout: "post_detail",
   watchQuery: ['q'],
+  data() {
+    return {
+      posts: ''
+    }
+  },
   async asyncData({route}) {
     const { data } = await axios.get(`http://localhost:8000/api/posts/?q=${route.query.q}`);
+    console.log(data);
     return {
       posts: data,
     }
