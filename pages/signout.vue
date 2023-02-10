@@ -1,9 +1,13 @@
 <template>
-    <h1>Привет, это страница выхода</h1>
+  <div></div>
 </template>
 
 <script>
-  export default {}
+export default {
+  async created() {
+    await this.$auth.logout()
+  }
+}
 </script>
 
 <style>
