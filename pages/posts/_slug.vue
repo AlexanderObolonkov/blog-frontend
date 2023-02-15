@@ -25,7 +25,7 @@
           <div class="p-2">Опубликовано: {{ post.created_at }}</div>
         </div>
         <hr>
-        <Comments :comments="comments"/>
+        <Comments :comments="comments" :post="post"/>
       </div>
       <Aside :tags=tags :aside=aside />
     </div>
