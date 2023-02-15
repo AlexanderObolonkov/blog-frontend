@@ -11,11 +11,11 @@
         </form>
       </div>
     </div>
-    <div class="media mb-4">
+    <div class="media mb-4" v-for="comment in comments" :key="comment.id">
       <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
       <div class="media-body">
-        <h5 class="mt-0">Дуся Иванова</h5>
-        Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье. Мое очень важное мнение по данной статье.
+        <h5 class="mt-0">{{comment.username}}</h5>
+        {{comment.text}}
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "Comments"
+  props: ['comments'],
 }
 </script>
 
