@@ -72,6 +72,15 @@ export default {
       current_page: Number(current_page)
     }
   },
+  head() {
+  return {
+    title: "Главная страница блога",
+    meta: [
+      { hid: "description", name: "description", content: "Агентство по разработке потрясных сайтов на bootstrap, drf и nuxtJS. А это просто главная страница нашего блога."},
+      { hid: "keywords", name: "keywords", content: "блог, django, bootstrap, vue, nuxt, nuxtjs, django rest framework, drf"}
+    ]
+  }
+},
 }
 </script>
 
