@@ -15,7 +15,7 @@
     "nuxt": "^2.14.6",
     "postcss": "^8.4.21",
     "postcss-loader": "^4.1.0",
-    "vuelidate": "^0.7.6",
+    "vuelidate": "^0.7.7",
     "webpack": "^4.46.0"
   },
   "devDependencies": {
