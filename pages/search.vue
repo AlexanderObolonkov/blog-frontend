@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SearchHeader @searchPosts="posts = $event"/>
+    <SearchHeader @searchPosts="posts = $event" />
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -10,9 +10,11 @@
               <li class="breadcrumb-item active" aria-current="page">Поиск</li>
             </ol>
           </nav>
-          <p class="lead">Найдено записей: {{posts.count}}</p>
+          <p class="lead">Найдено записей: {{ posts.count }}</p>
           <div v-for="post in posts.results" :key="post.id">
-            <nuxt-link :to="`/posts/${post.slug}`"><h2>{{ post.h1 }}</h2></nuxt-link>
+            <nuxt-link :to="`/posts/${post.slug}`">
+              <h2>{{ post.h1 }}</h2>
+            </nuxt-link>
             <p v-html="post.description"></p>
             <hr>
           </div>
@@ -26,10 +28,12 @@
           <a class="page-link disabled" href="#" tabindex="-1">Предыдущая</a>
         </li>
         <span v-for="i in total">
-          <li  v-if="current_page === i || (!$route.query.page && i === 1)" class="page-item active">
-            <nuxt-link class="page-link" :to="`?page=${i}&q=${search_query}`">{{i}}</nuxt-link></li>
+          <li v-if="current_page === i || (!$route.query.page && i === 1)" class="page-item active">
+            <nuxt-link class="page-link" :to="`?page=${i}&q=${search_query}`">{{ i }}</nuxt-link>
+          </li>
           <li v-else class="page-item">
-            <nuxt-link class="page-link" :to="`?page=${i}&q=${search_query}`">{{i}}</nuxt-link></li>
+            <nuxt-link class="page-link" :to="`?page=${i}&q=${search_query}`">{{ i }}</nuxt-link>
+          </li>
         </span>
         <nuxt-link v-if="next != null" class="page-link" :to="next">Следующая</nuxt-link>
         <li v-else class="page-item disabled">
@@ -45,7 +49,7 @@
 import SearchHeader from "@/components/SearchHeader";
 import axios from "axios";
 export default {
-  components: {SearchHeader},
+  components: { SearchHeader },
   layout: "post_detail",
   watchQuery: ['q', 'page'],
   data() {
@@ -58,7 +62,7 @@ export default {
       search_query: ''
     }
   },
-  async asyncData({route}) {
+  async asyncData({ route }) {
     let page_and_search = route.query.page !== undefined ? `?page=${route.query.page}&q=${route.query.q}` : `?q=${route.query.q}`;
     const { data } = await axios.get(encodeURI(`http://localhost:8000/api/posts/${page_and_search}`));
     let next = data.next != null ? data.next.split('/')[5] : data.next;
@@ -77,6 +81,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

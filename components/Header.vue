@@ -13,7 +13,7 @@
     </div>
   </div>
 </template>
-  
+
 <script>
 export default {
   name: "Header",
@@ -21,6 +21,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -11,14 +11,15 @@
         </form>
       </div>
       <div v-else>
-        <h6 class="card-header"><nuxt-link to="/signin">Авторизуйтесь</nuxt-link> или <nuxt-link to="/signup">зарегистрируйтесь</nuxt-link> чтобы оставить комментарий</h6>
+        <h6 class="card-header"><nuxt-link to="/signin">Авторизуйтесь</nuxt-link> или <nuxt-link
+            to="/signup">зарегистрируйтесь</nuxt-link> чтобы оставить комментарий</h6>
       </div>
     </div>
     <div class="media mb-4" v-for="comment in comments" :key="comment.id">
       <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
       <div class="media-body">
-        <h5 class="mt-0">{{comment.username}}</h5>
-        {{comment.text}}
+        <h5 class="mt-0">{{ comment.username }}</h5>
+        {{ comment.text }}
       </div>
     </div>
   </div>
@@ -36,13 +37,13 @@ export default {
     async addComment() {
       try {
         let response = await this.$axios.post('http://localhost:8000/api/comments/', {
-        post: this.$props.post.slug,
-        username: this.user.username,
-        text: this.new_comment,
-      })
+          post: this.$props.post.slug,
+          username: this.user.username,
+          text: this.new_comment,
+        })
         this.new_comment = '';
         this.comments.splice(0, 0, response.data)
-      console.log(response)
+        console.log(response)
       } catch (err) {
         console.log(err)
       }
@@ -55,13 +56,11 @@ export default {
     user() {
       return this.$auth.user
     },
-    isComplete () {
+    isComplete() {
       return this.new_comment;
     }
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

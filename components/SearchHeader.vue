@@ -27,13 +27,11 @@ export default {
   methods: {
     async searchPosts() {
       this.posts = await axios.get(`http://localhost:8000/api/posts/?q=${this.q}`);
-      this.$router.push("/search?q="+this.q);
+      this.$router.push("/search?q=" + this.q);
       this.$emit('searchPosts', this.posts.data);
     },
   }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
