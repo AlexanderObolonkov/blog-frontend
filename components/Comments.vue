@@ -15,10 +15,11 @@
             to="/signup">зарегистрируйтесь</nuxt-link> чтобы оставить комментарий</h6>
       </div>
     </div>
-    <div class="media mb-4" v-for="comment in comments" :key="comment.id">
+    <div class="media mb-4 shadow-sm bg-light p-2" v-for="comment in comments" :key="comment.id">
       <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
       <div class="media-body">
-        <h5 class="mt-0">{{ comment.username }}</h5>
+        <h5 class="mt-0 mb-0">{{ comment.username }}</h5>
+        <p class="mt-0" :title="comment.created_date"> <small> {{ formatDate(comment) }} </small></p>
         {{ comment.text }}
       </div>
     </div>
@@ -47,6 +48,9 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    formatDate(comment) {
+      return this.$dateFns.formatDistanceToNow(new Date(comment.created_date), { addSuffix: true });
     },
   },
   computed: {

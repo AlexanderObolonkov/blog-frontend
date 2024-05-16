@@ -43,6 +43,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    '@nuxtjs/date-fns',
   ],
   auth: {
     strategies: {
@@ -67,6 +68,10 @@ export default {
         tokenRequired: true,
       }
     },
+  },
+  dateFns: {
+    locales: ['ru'],
+    defaultLocale: 'ru'
   },
   axios: {
     baseURL: 'http://localhost:8000'
