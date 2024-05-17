@@ -21,7 +21,7 @@
           </nav>
           <img class="img-fluid rounded " :src="post.image" alt="">
           <hr>
-          <p v-html="post.content">
+          <p v-html="post.content" v-highlightjs>
           </p>
           <div class="d-flex justify-content-end">
             <span v-for="tag in post.tags">
