@@ -13,6 +13,9 @@
         <li class="nav-item active">
           <nuxt-link class="nav-link" to="/">Главная</nuxt-link>
         </li>
+        <li class="nav-item">
+          <nuxt-link class="nav-link" to="/chat">Чат</nuxt-link>
+        </li>
         <li class="nav-item ">
           <nuxt-link class="nav-link" to="/contact">Контакты</nuxt-link>
         </li>

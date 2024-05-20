@@ -3,29 +3,29 @@ export const state = () => ({
   total: [],
   next: [],
   previous: [],
-  current_page: 0
+  current_page: 0,
 })
 
 export const mutations = {
-  SET_POSTS (state, posts) {
+  SET_POSTS(state, posts) {
     state.posts = posts
   },
-  SET_TOTAL (state, total) {
+  SET_TOTAL(state, total) {
     state.total = total
   },
-  SET_NEXT (state, next) {
+  SET_NEXT(state, next) {
     state.next = next
   },
-  SET_PREVIOUS (state, previous) {
+  SET_PREVIOUS(state, previous) {
     state.previous = previous
   },
-  SET_CURRENT_PAGE (state, current_page) {
+  SET_CURRENT_PAGE(state, current_page) {
     state.current_page = current_page
   },
 }
 
 export const actions = {
-  async loadAllPosts({commit}, {query_page}) {
+  async loadAllPosts({ commit }, { query_page }) {
     let page = query_page !== undefined ? `?page=${query_page}` : '';
     const { data } = await this.$axios.get(`http://127.0.0.1:8000/api/posts/${page}`);
     let next = data.next != null ? data.next.split('/')[5] : data.next;
