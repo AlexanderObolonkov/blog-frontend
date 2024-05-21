@@ -5,6 +5,9 @@
       <label for="inputUsername" class="sr-only">Имя пользователя</label>
       <input id="inputUsername" class="form-control" placeholder="Имя пользователя" required=""
         v-model="register.username">
+      <label for="inputEmail" class="sr-only">Адрес электронной почты</label>
+      <input id="inputEmail" class="form-control" placeholder="Email" required=""
+        v-model="register.email">
       <label for="inputPassword" class="sr-only">Пароль</label>
       <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Пароль" required=""
         v-model="register.password">
@@ -23,6 +26,7 @@ export default {
     return {
       register: {
         username: '',
+        email: '',
         password: '',
         password2: '',
       },
@@ -33,6 +37,7 @@ export default {
       try {
         let response = await this.$axios.post('/api/register/', {
           username: this.register.username,
+          email: this.register.email,
           password: this.register.password,
           password2: this.register.password2
         })
@@ -40,7 +45,7 @@ export default {
         await this.$auth.loginWith('local', {
           data: {
             username: this.register.username,
-            password: this.register.password
+            password: this.register.password,
           },
         })
         this.$router.push('/')

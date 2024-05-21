@@ -27,7 +27,7 @@
               <textarea id="chat-message-input" class="form-control" rows="3" v-model="message" @keydown="handleKeyDown"
                 placeholder="Введите ваше сообщение"></textarea>
               <button id="chat-message-submit" class="btn btn-primary mt-2" @click="sendMessage"
-                :disabled="!isComplete" title="Отправить - Enter, перенос строки - Shitf+Enter">Отправить</button>
+                :disabled="!isComplete" title="Отправить - Enter, перенос строки - Shift+Enter">Отправить</button>
             </div>
           </div>
           <div v-else>
@@ -55,6 +55,18 @@ export default {
     };
   },
   methods: {
+    escapeHtml(unsafe) {
+      return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+        .replace(/\n/g, '<br>');
+    },
+    formatMessage(message) {
+      return this.escapeHtml(message);
+    },
     connectWebSocket() {
       if (this.loggedIn) {
         const token = this.$auth.strategy.token.get().split(' ')[1];
@@ -101,9 +113,6 @@ export default {
         event.preventDefault();
         this.sendMessage();
       }
-    },
-    formatMessage(message) {
-      return message.replace(/\n/g, '<br>');
     }
   },
   computed: {

@@ -46,6 +46,15 @@ export default {
     '@nuxtjs/auth-next',
     '@nuxtjs/date-fns',
   ],
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'unsubscribe-newsletter',
+        path: '/unsubscribe/newsletter/:userId',
+        component: resolve(__dirname, 'pages/unsubscribe.vue')
+      })
+    }
+  },
   auth: {
     strategies: {
       local: {
