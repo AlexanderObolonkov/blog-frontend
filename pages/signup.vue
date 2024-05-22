@@ -42,13 +42,7 @@ export default {
           password2: this.register.password2
         })
         console.log(response)
-        await this.$auth.loginWith('local', {
-          data: {
-            username: this.register.username,
-            password: this.register.password,
-          },
-        })
-        this.$router.push('/')
+        this.$router.push('/signin');
       } catch (err) {
         console.log(err)
       }
