@@ -32,7 +32,7 @@
           </div>
           <div v-else>
             <h6 class="card-header"><nuxt-link to="/signin">Авторизуйтесь</nuxt-link> или <nuxt-link
-                to="/signup">зарегистрируйтесь</nuxt-link> чтобы оставить комментарий</h6>
+                to="/signup">зарегистрируйтесь</nuxt-link> чтобы воспользоваться чатом</h6>
           </div>
         </div>
       </div>
