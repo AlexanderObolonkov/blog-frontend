@@ -22,8 +22,10 @@
           <img class="img-fluid rounded " :src="post.image" alt="">
           <hr>
           <div class="mb-2 d-flex justify-content-end">
-            <button @click="toggleSpeak" class="btn btn-light btn-sm">{{ isSpeaking ? "Отменить прослушивание" : "Прослушать статью" }}</button>
-            <button v-if="isSpeaking" @click="togglePause" class="btn btn-secondary ml-2 btn-sm">{{ isPaused ? "Возобновить" : "Пауза" }}</button>
+            <button @click="toggleSpeak" class="btn btn-light btn-sm">{{ isSpeaking ? "Отменить прослушивание" :
+              "Прослушать статью" }}</button>
+            <button v-if="isSpeaking" @click="togglePause" class="btn btn-secondary ml-2 btn-sm">{{ isPaused ?
+              "Возобновить" : "Пауза" }}</button>
           </div>
           <hr>
           <p v-html="post.content" v-highlightjs>
