@@ -21,6 +21,11 @@
           </nav>
           <img class="img-fluid rounded " :src="post.image" alt="">
           <hr>
+          <div class="mb-2 d-flex justify-content-end">
+            <button @click="toggleSpeak" class="btn btn-light btn-sm">{{ isSpeaking ? "Отменить прослушивание" : "Прослушать статью" }}</button>
+            <button v-if="isSpeaking" @click="togglePause" class="btn btn-secondary ml-2 btn-sm">{{ isPaused ? "Возобновить" : "Пауза" }}</button>
+          </div>
+          <hr>
           <p v-html="post.content" v-highlightjs>
           </p>
           <div class="d-flex justify-content-end">
@@ -67,6 +72,54 @@ export default {
       tags: tags.data,
       aside: aside.data,
       comments: comments.data
+    }
+  },
+  data() {
+    return {
+      isSpeaking: false,
+      isPaused: false,
+      utterance: null
+    };
+  },
+  methods: {
+    toggleSpeak() {
+      if (this.isSpeaking) {
+        this.stopSpeaking();
+      } else {
+        this.startSpeaking();
+      }
+    },
+    startSpeaking() {
+      if ('speechSynthesis' in window) {
+        this.utterance = new SpeechSynthesisUtterance(this.post.content.replace(/(<([^>]+)>)/gi, ""));
+        this.utterance.onend = this.speechEnded;
+        window.speechSynthesis.speak(this.utterance);
+        this.isSpeaking = true;
+        this.isPaused = false;
+      } else {
+        alert('Извините, ваш браузер не поддерживает преобразование текста в речь!');
+      }
+    },
+    stopSpeaking() {
+      if (this.utterance) {
+        window.speechSynthesis.cancel();
+        this.isSpeaking = false;
+        this.isPaused = false;
+        this.utterance = null;
+      }
+    },
+    togglePause() {
+      if (this.isPaused) {
+        window.speechSynthesis.resume();
+      } else {
+        window.speechSynthesis.pause();
+      }
+      this.isPaused = !this.isPaused;
+    },
+    speechEnded() {
+      this.isSpeaking = false;
+      this.isPaused = false;
+      this.utterance = null;
     }
   },
   head() {
