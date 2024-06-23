@@ -42,7 +42,7 @@ export default {
           password2: this.register.password2
         })
         console.log(response)
-        this.$router.push('/signin');
+        this.$router.back()
       } catch (err) {
         console.log(err)
       }
